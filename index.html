@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="box">
+
+        </div>
+    </div>
+    <script>
+        const digitalClock = () =>{
+            let date = new Date();
+            let hr = date.getHours();  // get hour from Date object
+            let convertDate = date.toTimeString(); //convert date to string
+            let time = convertDate.split(' '); // split only hr, min, sec from date
+            let dayNight = hr >= 12 ? 'PM' : 'AM';
+
+            var container = document.getElementById('container');
+            
+
+            //background image change using if else
+            if( 23 >= hr >= 18 || 5 >= hr >= 0){
+                container.style.backgroundImage = 'url("image/night.jpg")';
+            }
+            else if( 12 >= hr >= 6 ){
+                container.style.backgroundImage = 'url("image/morning.jpg")';
+            }
+            else{
+                container.style.backgroundImage = 'url("image/evening.jpg")';
+            }
+
+            document.getElementById('box').innerHTML = time[0]+" "+dayNight; // showing time in brower
+        }
+
+        setInterval(digitalClock, 1000); //calling function and updating every sec
+    </script>
+</body>
+</html>
